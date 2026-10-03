@@ -1,0 +1,25 @@
+# Local credentials and private configuration
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+credentials.*
+secrets.*
+
+# Local creation and installation records
+work/
+vendor/
+__pycache__/
+*.pyc
+.codex/
+chatgpt-installation.json
+installation-verification.json
+
+# Editor and operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/

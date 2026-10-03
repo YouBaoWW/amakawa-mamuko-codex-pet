@@ -1,0 +1,3 @@
+# Preserve release bytes so checksums match the downloadable package.
+mamuko-pass-v2/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+downloads/*.zip -text

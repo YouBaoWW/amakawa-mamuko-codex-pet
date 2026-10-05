@@ -20,3 +20,11 @@
 新增 [真梦梓 通行证皮 v2](mamuko-pass-v2/README.md)，包含 Codex 安装包、ChatGPT Work v2 图集、9 组动画与 16 个注视方向。可下载 [完整 ZIP](downloads/mamuko-pass-v2.zip)，或查看 [动画预览说明](mamuko-pass-v2/README.md#查看动画)。
 
 ![真梦梓 通行证皮](mamuko-pass-v2/main-look-approved.png)
+
+## 羁绊 v2 版本
+
+新增 [天川真梦梓 羁绊v2](mamuko-bond-v2/README.md)，包含 9 组标准动画、16 个看向方向与完整预览。
+
+[下载羁绊 v2 ZIP](downloads/amakawa-mamuko-bond-v2.zip) · [查看动画与方向](mamuko-bond-v2/README.md#动画预览)
+
+![天川真梦梓 羁绊v2](mamuko-bond-v2/previews/idle.gif)

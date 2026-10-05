@@ -1,0 +1,59 @@
+{
+  "displayName": "天川真梦梓 羁绊v2",
+  "petId": "amakawa-mamuko-bond-v2",
+  "spriteVersionNumber": 2,
+  "atlas": {
+    "path": "amakawa-mamuko-bond-v2/spritesheet.webp",
+    "width": 1536,
+    "height": 2288,
+    "columns": 8,
+    "rows": 11,
+    "cellWidth": 192,
+    "cellHeight": 208,
+    "sha256": "d7b85bf81aee8704b6646d4f91da28ec32fa276068ac4e7e2a0fdffb94d4dc29"
+  },
+  "archive": {
+    "path": "../downloads/amakawa-mamuko-bond-v2.zip",
+    "sha256": "1878a9408ad9fe71cdabdaef8eafddea1cc62e287f76ac9e3f7e4a496bc84806"
+  },
+  "standardAnimations": {
+    "idle": 6,
+    "running-right": 8,
+    "running-left": 8,
+    "waving": 4,
+    "jumping": 5,
+    "failed": 8,
+    "waiting": 6,
+    "running": 6,
+    "review": 6
+  },
+  "lookDirections": [
+    "000",
+    "022.5",
+    "045",
+    "067.5",
+    "090",
+    "112.5",
+    "135",
+    "157.5",
+    "180",
+    "202.5",
+    "225",
+    "247.5",
+    "270",
+    "292.5",
+    "315",
+    "337.5"
+  ],
+  "neutralCell": {
+    "row": 0,
+    "column": 6
+  },
+  "validation": {
+    "format": "pass",
+    "transparency": "pass",
+    "cardinalDirections": "pass",
+    "visualReview": "pass",
+    "notes": "部分斜向视线偏转较细微，已结合逐格对照与连续方向检查。"
+  }
+}

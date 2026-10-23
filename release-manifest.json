@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-10-23",
+  "pets": [
+    {
+      "id": "amakawa-mamuko",
+      "displayName": "天川真梦梓",
+      "directory": "amakawa-mamuko",
+      "atlasSha256": "ed8d2c4f274d3bd1d5d47b9680bfb42cec82088723b0893ba26ac514cd7d2c62",
+      "archive": {
+        "path": "downloads/amakawa-mamuko-v2.zip",
+        "layout": "install-files",
+        "bytes": 2936056,
+        "sha256": "cb68563f15b87ced11ce09d460cb1713817cc864161b74db4525fb0d4754176a"
+      }
+    },
+    {
+      "id": "mamuko-pass",
+      "displayName": "真梦梓 通行证皮",
+      "directory": "mamuko-pass-v2/mamuko-pass",
+      "atlasSha256": "455090da62e54580dd1cfbcba15b25c0e049f3208c92e6d97cec03bb029ec774",
+      "archive": {
+        "path": "downloads/mamuko-pass-v2.zip",
+        "layout": "complete-package",
+        "bytes": 16392513,
+        "sha256": "11edb3aa457518b6567fc4d6efd8c6e226fe54e0f30f5048961187a2cccde73d"
+      }
+    },
+    {
+      "id": "amakawa-mamuko-bond-v2",
+      "displayName": "天川真梦梓 羁绊v2",
+      "directory": "mamuko-bond-v2/amakawa-mamuko-bond-v2",
+      "atlasSha256": "d7b85bf81aee8704b6646d4f91da28ec32fa276068ac4e7e2a0fdffb94d4dc29",
+      "archive": {
+        "path": "downloads/amakawa-mamuko-bond-v2.zip",
+        "layout": "install-files",
+        "bytes": 3325022,
+        "sha256": "1878a9408ad9fe71cdabdaef8eafddea1cc62e287f76ac9e3f7e4a496bc84806"
+      }
+    }
+  ]
+}

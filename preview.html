@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>天川真梦梓 · 三版本桌宠预览</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif; color: #f4effb; background: #13111a; --muted: #b6acc7; --line: #3b334a; --accent: #c1a0ed; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 44px 24px 28px; }
+    main { width: min(1100px, 100%); margin: auto; }
+    h1 { margin: 9px 0 12px; font-size: clamp(26px, 4vw, 38px); letter-spacing: .02em; }
+    h2 { margin: 0; font-size: 17px; font-weight: 650; }
+    p { line-height: 1.7; }
+    .eyebrow { font-size: 12px; letter-spacing: .15em; color: var(--accent); }
+    .intro { color: var(--muted); margin: 0 0 26px; font-size: 14px; }
+    button, input { font: inherit; }
+    button { color: inherit; cursor: pointer; border: 1px solid var(--line); background: #221d2c; border-radius: 11px; }
+    button:hover:not(:disabled) { background: #332840; border-color: #857098; }
+    button:focus-visible, input:focus-visible { outline: 3px solid #d0b0ff; outline-offset: 4px; }
+    button[aria-pressed="true"] { background: #3c2c50; border-color: var(--accent); }
+    button:disabled { cursor: wait; opacity: .45; }
+    .versions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+    .version { padding: 17px 18px; text-align: left; }
+    .version strong { display: block; font-size: 16px; margin-bottom: 5px; }
+    .version span { font-size: 12px; color: var(--muted); }
+    .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .stage { position: relative; min-height: 475px; border: 1px solid var(--line); border-radius: 20px; background: radial-gradient(ellipse at 50% 43%, #393044 0%, #211b2b 52%, #19151f 85%); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .stage::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(45deg, #ffffff03 25%, transparent 25%, transparent 75%, #ffffff03 75%), linear-gradient(45deg, #ffffff03 25%, transparent 25%, transparent 75%, #ffffff03 75%); background-size: 28px 28px; background-position: 0 0, 14px 14px; }
+    .stage-caption { position: absolute; left: 20px; top: 18px; color: var(--muted); font-size: 12px; z-index: 1; }
+    #pet { display: block; width: min(384px, 90%); height: auto; aspect-ratio: 192 / 208; position: relative; }
+    .readout { position: absolute; bottom: 18px; left: 20px; right: 20px; display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+    #frame { color: #e0c9fc; }
+    .load-state { position: absolute; inset: 55px 20px; padding: 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: #1b1624ed; border-radius: 14px; z-index: 2; }
+    .load-state[hidden] { display: none; }
+    .load-state p { color: var(--muted); font-size: 14px; max-width: 330px; overflow-wrap: anywhere; }
+    #retry { padding: 10px 24px; }
+    .panel { border: 1px solid var(--line); border-radius: 20px; padding: 24px; background: #1b1723; }
+    .section-heading { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-bottom: 16px; }
+    .section-heading span { color: var(--muted); font-size: 12px; }
+    .actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .action { padding: 13px 6px; font-size: 14px; }
+    .action small { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; }
+    .playback { margin: 22px 0; padding: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; gap: 20px; align-items: center; }
+    #play { min-width: 92px; padding: 11px 18px; background: #c1a0ed; border-color: #c1a0ed; color: #1e142a; font-weight: 650; }
+    #play:hover:not(:disabled) { background: #d7bdff; }
+    .speed { flex: 1; min-width: 0; }
+    .speed label { display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; margin-bottom: 9px; }
+    output { color: #e0c9fc; font-variant-numeric: tabular-nums; }
+    input[type="range"] { display: block; width: 100%; accent-color: var(--accent); cursor: pointer; }
+    .follow { display: flex; gap: 10px; align-items: center; font-size: 14px; cursor: pointer; }
+    .follow input { width: 17px; height: 17px; margin: 0; accent-color: var(--accent); }
+    .hint { margin: 12px 0 0; font-size: 12px; color: var(--muted); }
+    #motion-note { margin-top: 8px; color: #d2b7f3; }
+    .gaze-section { margin-top: 26px; }
+    .directions { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 9px; }
+    .direction { display: flex; flex-direction: column; align-items: center; padding: 10px 3px; gap: 5px; }
+    .direction canvas { width: 48px; height: 52px; }
+    .direction span { font-size: 12px; }
+    .direction small { color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+    footer { color: #958aa7; font-size: 12px; line-height: 1.8; margin-top: 24px; border-top: 1px solid #2d2638; padding-top: 18px; }
+    footer code { color: #c5b2db; }
+    @media (max-width: 760px) { body { padding: 26px 16px; } .layout { grid-template-columns: 1fr; } .stage { min-height: 455px; } .panel { padding: 20px; } .directions { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    @media (max-width: 440px) { .versions { gap: 6px; } .version { padding: 13px 8px; } .version strong { font-size: 14px; } .version span { font-size: 11px; } .stage { min-height: 390px; } .playback { gap: 14px; } .section-heading { align-items: flex-start; } .section-heading span { max-width: 160px; line-height: 1.5; text-align: right; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="eyebrow">AMAKAWA MAMUKO · PET COLLECTION</div>
+      <h1>天川真梦梓 · 桌宠预览</h1>
+      <p class="intro">三个版本，九组动作，十六个注视方向。选择一套外观，让真梦梓动起来。</p>
+    </header>
+    <div class="versions" id="versions" role="group" aria-label="选择桌宠版本"></div>
+    <div class="layout">
+      <section class="stage" id="stage" aria-label="桌宠预览区域" aria-busy="true">
+        <div class="stage-caption" id="stage-title">原版 · 透明图集</div>
+        <canvas id="pet" width="384" height="416" role="img" aria-label="天川真梦梓原版，待机动作"></canvas>
+        <div class="readout"><span id="state-label">准备中</span><span id="frame" aria-live="off">—</span></div>
+        <div class="load-state" id="load-state">
+          <strong id="load-title">正在载入图集</strong>
+          <p id="load-message" role="status" aria-live="polite">读取本地 WebP 素材…</p>
+          <button id="retry" type="button" hidden>重新载入</button>
+        </div>
+      </section>
+      <section class="panel" aria-labelledby="actions-title">
+        <div class="section-heading"><h2 id="actions-title">动作</h2><span>仅播放每行的有效帧</span></div>
+        <div class="actions" id="actions" role="group" aria-label="选择动作"></div>
+        <div class="playback">
+          <button id="play" type="button" disabled aria-label="暂停动画">暂停</button>
+          <div class="speed">
+            <label for="speed">播放速度 <output id="speed-value" for="speed">1×</output></label>
+            <input id="speed" type="range" min="0.5" max="2" step="0.25" value="1" aria-valuetext="1 倍速">
+          </div>
+        </div>
+        <label class="follow"><input id="follow" type="checkbox" disabled>注视指针</label>
+        <p class="hint">开启后，在左侧预览区域移动指针。点击方向帧可固定注视；点击「播放」返回动作动画。</p>
+        <p class="hint" id="motion-note" hidden>已遵循系统的减少动态效果设置，默认暂停；可手动播放。</p>
+      </section>
+    </div>
+    <section class="gaze-section" aria-labelledby="gaze-title">
+      <div class="section-heading"><h2 id="gaze-title">注视方向</h2><span>正上方起 · 顺时针每格 22.5°</span></div>
+      <div class="directions" id="directions" role="group" aria-label="选择注视方向"></div>
+    </section>
+    <footer>
+      Codex v2 图集：1536 × 2288 像素，8 列 × 11 行，单帧 192 × 208 像素。<br>
+      本页的循环时序和速度仅用于展示，实际动作状态由应用控制。保留仓库目录结构，直接打开 <code>preview.html</code> 即可；无需安装或联网。
+    </footer>
+    <noscript><p>请启用 JavaScript，以查看本地精灵图集与动画。</p></noscript>
+  </main>
+  <script>
+    'use strict';
+    const versions = [
+      { name: '原版', detail: 'amakawa-mamuko', path: 'amakawa-mamuko/spritesheet.webp' },
+      { name: '通行证皮', detail: 'mamuko-pass-v2', path: 'mamuko-pass-v2/mamuko-pass/spritesheet.webp' },
+      { name: '羁绊 v2', detail: 'mamuko-bond-v2', path: 'mamuko-bond-v2/amakawa-mamuko-bond-v2/spritesheet.webp' }
+    ];
+    // These durations are presentation timing, not an application state machine.
+    const actions = [
+      { name: '待机', key: 'idle', durations: [280, 110, 110, 140, 140, 320] },
+      { name: '向右移动', key: 'move-right', durations: [120, 120, 120, 120, 120, 120, 120, 220] },
+      { name: '向左移动', key: 'move-left', durations: [120, 120, 120, 120, 120, 120, 120, 220] },
+      { name: '挥手', key: 'wave', durations: [140, 140, 140, 280] },
+      { name: '跳跃', key: 'jump', durations: [140, 140, 140, 140, 280] },
+      { name: '失落', key: 'sad', durations: [140, 140, 140, 140, 140, 140, 140, 240] },
+      { name: '等待输入', key: 'waiting', durations: [150, 150, 150, 150, 150, 260] },
+      { name: '工作', key: 'working', durations: [120, 120, 120, 120, 120, 220] },
+      { name: '审阅', key: 'review', durations: [150, 150, 150, 150, 150, 280] }
+    ];
+    const directionNames = ['上', '上偏右', '右上', '右偏上', '右', '右偏下', '右下', '下偏右', '下', '下偏左', '左下', '左偏下', '左', '左偏上', '左上', '上偏左'];
+    const $ = (id) => document.getElementById(id);
+    const canvas = $('pet');
+    const context = canvas.getContext('2d');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let selectedVersion = 0;
+    let selectedAction = 0;
+    let frame = 0;
+    let direction = null;
+    let playing = !reducedMotion.matches;
+    let ready = false;
+    let image = null;
+    let loadId = 0;
+    let animationId = null;
+    let lastTime = 0;
+    let elapsed = 0;
+    const versionButtons = [];
+    const actionButtons = [];
+    const directionButtons = [];
+    const directionCanvases = [];
+
+    versions.forEach((version, index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'version';
+      button.setAttribute('aria-pressed', String(index === 0));
+      const name = document.createElement('strong');
+      const detail = document.createElement('span');
+      name.textContent = version.name;
+      detail.textContent = version.detail;
+      button.append(name, detail);
+      button.addEventListener('click', () => loadVersion(index));
+      $('versions').append(button);
+      versionButtons.push(button);
+    });
+
+    actions.forEach((action, index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'action';
+      button.disabled = true;
+      const title = document.createElement('span');
+      const detail = document.createElement('small');
+      title.textContent = action.name;
+      detail.textContent = `${action.durations.length} 帧`;
+      button.append(title, detail);
+      button.addEventListener('click', () => {
+        selectedAction = index;
+        frame = 0;
+        direction = null;
+        $('follow').checked = false;
+        resetClock();
+        updateControls();
+        draw();
+        syncAnimation();
+      });
+      $('actions').append(button);
+      actionButtons.push(button);
+    });
+
+    directionNames.forEach((name, index) => {
+      const button = document.createElement('button');
+      const thumbnail = document.createElement('canvas');
+      const label = document.createElement('span');
+      const angle = document.createElement('small');
+      button.type = 'button';
+      button.className = 'direction';
+      button.disabled = true;
+      button.setAttribute('aria-label', `注视${name}，${index * 22.5} 度`);
+      thumbnail.width = 96;
+      thumbnail.height = 104;
+      thumbnail.setAttribute('aria-hidden', 'true');
+      label.textContent = name;
+      angle.textContent = `${index * 22.5}°`;
+      button.append(thumbnail, label, angle);
+      button.addEventListener('click', () => {
+        direction = index;
+        playing = false;
+        $('follow').checked = false;
+        updateControls();
+        draw();
+        syncAnimation();
+      });
+      $('directions').append(button);
+      directionButtons.push(button);
+      directionCanvases.push(thumbnail);
+    });
+
+    function resetClock() {
+      elapsed = 0;
+      lastTime = performance.now();
+    }
+
+    function updateControls() {
+      actionButtons.forEach((button, index) => {
+        button.disabled = !ready;
+        button.setAttribute('aria-pressed', String(direction === null && index === selectedAction));
+      });
+      directionButtons.forEach((button, index) => {
+        button.disabled = !ready;
+        button.setAttribute('aria-pressed', String(direction === index));
+      });
+      $('play').disabled = !ready;
+      $('follow').disabled = !ready;
+      $('play').textContent = playing ? '暂停' : '播放';
+      $('play').setAttribute('aria-label', playing ? '暂停动画' : '播放动作动画');
+      $('motion-note').hidden = !reducedMotion.matches;
+    }
+
+    function draw() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      if (!ready) return;
+      const row = direction === null ? selectedAction : 9 + Math.floor(direction / 8);
+      const column = direction === null ? frame : direction % 8;
+      context.imageSmoothingEnabled = true;
+      context.imageSmoothingQuality = 'high';
+      context.drawImage(image, column * 192, row * 208, 192, 208, 0, 0, canvas.width, canvas.height);
+      const label = direction === null ? actions[selectedAction].name : `注视${directionNames[direction]}`;
+      canvas.setAttribute('aria-label', `天川真梦梓${versions[selectedVersion].name}，${label}`);
+      $('state-label').textContent = direction === null ? `${label} · ${playing ? '播放中' : '已暂停'}` : `${label} · ${$('follow').checked ? '跟随指针' : '固定帧'}`;
+      $('frame').textContent = direction === null ? `${frame + 1} / ${actions[selectedAction].durations.length} 帧` : `${direction * 22.5}°`;
+    }
+
+    function shouldAnimate() {
+      return ready && playing && direction === null && !document.hidden;
+    }
+
+    function syncAnimation() {
+      if (shouldAnimate()) {
+        if (animationId === null) {
+          lastTime = performance.now();
+          animationId = requestAnimationFrame(tick);
+        }
+      } else if (animationId !== null) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
+    }
+
+    function tick(time) {
+      animationId = null;
+      if (!shouldAnimate()) return;
+      elapsed += Math.min(time - lastTime, 250) * Number($('speed').value);
+      lastTime = time;
+      const durations = actions[selectedAction].durations;
+      let changed = false;
+      while (elapsed >= durations[frame]) {
+        elapsed -= durations[frame];
+        frame = (frame + 1) % durations.length;
+        changed = true;
+      }
+      if (changed) draw();
+      animationId = requestAnimationFrame(tick);
+    }
+
+    function loadVersion(index) {
+      const request = ++loadId;
+      selectedVersion = index;
+      selectedAction = 0;
+      frame = 0;
+      direction = null;
+      ready = false;
+      $('follow').checked = false;
+      versionButtons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
+      $('stage-title').textContent = `${versions[index].name} · 透明图集`;
+      $('stage').setAttribute('aria-busy', 'true');
+      $('load-state').hidden = false;
+      $('load-title').textContent = '正在载入图集';
+      $('load-message').textContent = '读取本地 WebP 素材…';
+      $('retry').hidden = true;
+      $('state-label').textContent = '准备中';
+      $('frame').textContent = '—';
+      directionCanvases.forEach((thumbnail) => thumbnail.getContext('2d').clearRect(0, 0, thumbnail.width, thumbnail.height));
+      updateControls();
+      syncAnimation();
+      draw();
+      const next = new Image();
+      const fail = (message) => {
+        if (request !== loadId) return;
+        $('stage').setAttribute('aria-busy', 'false');
+        $('load-title').textContent = '图集载入失败';
+        $('load-message').textContent = message;
+        $('retry').hidden = false;
+        $('state-label').textContent = '素材不可用';
+      };
+      next.onload = () => {
+        if (request !== loadId) return;
+        if (next.naturalWidth !== 1536 || next.naturalHeight !== 2288) {
+          fail(`图集尺寸应为 1536 × 2288，当前为 ${next.naturalWidth} × ${next.naturalHeight}。请检查对应素材。`);
+          return;
+        }
+        image = next;
+        ready = true;
+        $('stage').setAttribute('aria-busy', 'false');
+        $('load-state').hidden = true;
+        $('load-message').textContent = `${versions[index].name}图集已载入。`;
+        directionCanvases.forEach((thumbnail, i) => {
+          const thumbnailContext = thumbnail.getContext('2d');
+          thumbnailContext.imageSmoothingQuality = 'high';
+          thumbnailContext.drawImage(image, (i % 8) * 192, (9 + Math.floor(i / 8)) * 208, 192, 208, 0, 0, 96, 104);
+        });
+        resetClock();
+        updateControls();
+        draw();
+        syncAnimation();
+      };
+      next.onerror = () => fail(`未能读取 ${versions[index].path}。请保留完整仓库目录，并使用支持 WebP 的浏览器打开本页。`);
+      next.src = versions[index].path;
+    }
+
+    $('play').addEventListener('click', () => {
+      playing = !playing;
+      if (playing) {
+        direction = null;
+        $('follow').checked = false;
+      }
+      resetClock();
+      updateControls();
+      draw();
+      syncAnimation();
+    });
+
+    $('speed').addEventListener('input', () => {
+      const speed = Number($('speed').value);
+      $('speed-value').value = `${speed}×`;
+      $('speed').setAttribute('aria-valuetext', `${speed} 倍速`);
+      resetClock();
+    });
+
+    $('follow').addEventListener('change', () => {
+      playing = false;
+      direction = $('follow').checked ? 0 : null;
+      resetClock();
+      updateControls();
+      draw();
+      syncAnimation();
+    });
+
+    $('stage').addEventListener('pointermove', (event) => {
+      if (!ready || !$('follow').checked) return;
+      const bounds = canvas.getBoundingClientRect();
+      const dx = event.clientX - bounds.left - bounds.width / 2;
+      const dy = event.clientY - bounds.top - bounds.height / 2;
+      if (Math.hypot(dx, dy) < 12) return;
+      const angle = (Math.atan2(dx, -dy) * 180 / Math.PI + 360) % 360;
+      const nextDirection = Math.round(angle / 22.5) % 16;
+      if (direction !== nextDirection) {
+        direction = nextDirection;
+        updateControls();
+        draw();
+      }
+    });
+
+    $('retry').addEventListener('click', () => loadVersion(selectedVersion));
+    document.addEventListener('visibilitychange', () => {
+      resetClock();
+      syncAnimation();
+    });
+    const onMotionPreferenceChange = () => {
+      if (reducedMotion.matches) playing = false;
+      updateControls();
+      draw();
+      syncAnimation();
+    };
+    if (reducedMotion.addEventListener) reducedMotion.addEventListener('change', onMotionPreferenceChange);
+    else reducedMotion.addListener(onMotionPreferenceChange);
+    loadVersion(0);
+  </script>
+</body>
+</html>
